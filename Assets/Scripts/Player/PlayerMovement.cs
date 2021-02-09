@@ -39,12 +39,12 @@ namespace Player
                 }
 
                 joystickPosition = touchScreenPosition;
+
+                Vector2 offset = joystickPosition - joystickOrigin;
+                Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
+
+                rb.AddForce((new Vector3(direction.x, 0, direction.y) * -1) * Speed, ForceMode.Force);
             }
-
-            Vector2 offset = joystickPosition - joystickOrigin;
-            Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
-
-            rb.AddForce((new Vector3(direction.x, 0, direction.y) * -1) * Speed, ForceMode.Force);
         }
 
         #endregion
